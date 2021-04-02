@@ -16,7 +16,7 @@ xCBF = CBFLOGS.x;
 
 %% Robust CBF Safety Filter
 filterCase = 4;
-betaAll = [0 0.1 0.5 0.9]; % Uncertainty level
+betaAll = [0 0.1 0.6 0.9]; % Uncertainty level
 Nb = length(betaAll);
 RCBFLOGS = cell(Nb,1);
 xRCBF = cell(Nb,1);
@@ -72,6 +72,11 @@ legend([p1 p2 p3 plt{:}],'LQR Baseline','Unsafe Region','CBF',legendArray{:},'Fo
 
 %% Plot inputs
 figure;hold on;box on;grid on;
-plot(CBFLOGS.Time,CBFLOGS.u,'b',RCBFLOGS{1}.Time,RCBFLOGS{1}.u,'--r','LineWidth',2);
-legend('Nominal CBF','Robust CBF with \beta = 0','Location','southeast');
+p1 = plot(CBFLOGS.Time,CBFLOGS.u,'b','LineWidth',2);
+for i = 1:Nb
+    uplt = RCBFLOGS{i}.u;
+    utime = RCBFLOGS{i}.Time;
+    plt{i} = plot(utime,uplt,'LineWidth',2);
+end
+legend([p1,plt{:}],'Nominal CBF',legendArray{:},'Location','southeast');
 xlabel('u');ylabel('t');

@@ -7,9 +7,9 @@ load_system(mdl2);
 
 %% Robust CBF Safety Filter
 filterCase = 4;
+beta = 0.9;
 
 % Plant with no uncertainty
-beta = 0.9;
 simout = sim(mdl1);
 RCBFLOGS1 = logsout2struct(simout.logsout);
 
@@ -45,7 +45,24 @@ p3.EdgeColor = 'r';
 xlabel('x_1','FontSize',14);
 ylabel('x_2','FontSize',14);
 axis equal;alpha(0.1);
-xlim([-20 20]);
-ylim([-15 15]);
+xlim([-30 40]);
+ylim([-20 25]);
 title('RobustCBF Design');
 legend([p1 p2 p3],'No uncertainty','Worst-case uncertainty','Unsafe Region','FontSize',12,'Location','northwest');
+
+%% Plot Control Effort
+figure,hold on;box on;grid on;
+p1 = plot(RCBFLOGS1.Time,RCBFLOGS1.u,'b',RCBFLOGS2.Time,RCBFLOGS2.u,'--r','LineWidth',2);
+legend('No uncertainty','Worst-case uncertainty','Location','southeast');
+xlabel('Time (sec)');
+ylabel('Control input u');
+title('\beta = 0.6');
+
+%% Plot h
+figure;hold on;grid on;box on;
+plot(RCBFLOGS1.Time,RCBFLOGS1.h,'b','LineWidth',2);
+plot(RCBFLOGS2.Time,RCBFLOGS2.h,'--r','LineWidth',2);
+legend('No uncertainty','Worst-case uncertainty','Location','southeast');
+ylabel('h(t)','FontSize',12);
+title('\beta = 0.6');
+xlabel('t (sec)','FontSize',12);
