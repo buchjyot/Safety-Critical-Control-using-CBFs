@@ -70,3 +70,13 @@ for i = 1:Nb
 end
 legend([plt{:}],legendArray{:},'Location','southeast');
 xlabel('Time (sec)');ylabel('h(t)');
+
+%% Plot cost
+figure;hold on;box on;grid on;
+for i = 1:Nb
+    cplt = RCBFLOGS{i}.cost;
+    ctime = RCBFLOGS{i}.Time;
+    plt{i} = plot(ctime,cplt,'LineWidth',2);
+end
+legend([plt{:}],legendArray{:},'Location','southeast');
+xlabel('Time (sec)');ylabel('cost(t)');

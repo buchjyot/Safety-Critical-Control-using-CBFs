@@ -80,4 +80,15 @@ for i = 1:Nb
     plt{i} = plot(utime,uplt,'LineWidth',2);
 end
 legend([p1,plt{:}],'Nominal Plant - Nominal CBF',legendArray{:},'Location','southeast');
-xlabel('t');ylabel('u');
+xlabel('t');ylabel('u(t)');
+
+%% Plot inputs
+figure;hold on;box on;grid on;
+p1 = plot(CBFLOGS.Time,CBFLOGS.h,'b','LineWidth',2);
+for i = 1:Nb
+    hplt = RCBFLOGS{i}.h;
+    htime = RCBFLOGS{i}.Time;
+    plt{i} = plot(htime,hplt,'LineWidth',2);
+end
+legend([p1,plt{:}],'Nominal Plant - Nominal CBF',legendArray{:},'Location','southeast');
+xlabel('t');ylabel('h(t)');

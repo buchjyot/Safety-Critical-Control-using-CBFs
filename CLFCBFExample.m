@@ -54,3 +54,8 @@ axis equal;alpha(0.1);
 xlim([-20 20]);
 ylim([-15 15]);
 legend([p1 p2 p3 p4],'LQR Baseline','Unsafe Region','CBF-QP','CLF-CBF-QP','FontSize',12,'Location','northwest');
+
+%% Plot CBFLOGS.cost
+figure;grid on;box on;hold on;
+plot(CLFCBFLOGS.Time,CLFCBFLOGS.cost,'b','LineWidth',2);
+xlabel('Time (sec)'); ylabel('J(u)');

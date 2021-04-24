@@ -28,7 +28,7 @@ for i = 1:Nb
     RCBFLOGS{i} = logsout2struct(simout.logsout);
     xRCBF{i} = RCBFLOGS{i}.x;
     tCBF{i} = RCBFLOGS{i}.Time;
-    legendArray{i} = ['RobustCBF \beta = ' num2str(betaAll(i))];
+    legendArray{i} = ['Nominal Plant - Robust CBF \beta = ' num2str(betaAll(i))];
 end
 
 %% Save data
@@ -78,5 +78,15 @@ for i = 1:Nb
     utime = RCBFLOGS{i}.Time;
     plt{i} = plot(utime,uplt,'LineWidth',2);
 end
-legend([p1,plt{:}],'Nominal CBF',legendArray{:},'Location','southeast');
-xlabel('u');ylabel('t');
+legend([p1,plt{:}],'Nominal Plant - Nominal CBF',legendArray{:},'Location','southeast');
+xlabel('t');ylabel('u(t)');
+
+%% Plot Cost
+figure;hold on;box on;grid on;
+for i = 1:Nb
+    cplt = RCBFLOGS{i}.cost;
+    ctime = RCBFLOGS{i}.Time;
+    plt{i} = plot(ctime,cplt,'LineWidth',2);
+end
+legend([plt{:}],legendArray{:},'Location','southeast');
+xlabel('t');ylabel('cost(t)');
