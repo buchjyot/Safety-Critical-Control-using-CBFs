@@ -162,8 +162,8 @@ else
             socConstraints(2) = secondordercone(A2,b2,d2,gamma2);
             
             options = optimoptions('coneprog','MaxIterations',100);
-            xopt = coneprog(f,socConstraints,[],[],[],[],[],[],options);
-            u = xopt(1:Nu);
+            sol = coneprog(f,socConstraints,[],[],[],[],[],[],options);
+            u = sol(1:Nu);
     end
 end
 

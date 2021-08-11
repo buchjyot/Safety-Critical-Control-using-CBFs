@@ -68,6 +68,14 @@ xlabel('Time (sec)');
 ylabel('Control input u');
 title('\beta = 0.8');
 
+%% Plot worst-case w
+figure,hold on;box on;grid on;
+p1 = plot(RCBFLOGS1.Time,RCBFLOGS1.wcw,'b',RCBFLOGS2.Time,RCBFLOGS2.wcw,'m',RCBFLOGS3.Time,RCBFLOGS3.wcw,'c','LineWidth',2);
+legend('No uncertainty','Sim with +\Delta','Sim with -\Delta','Location','southeast');
+xlabel('Time (sec)');
+ylabel('Uncertain Input w_{wc}');
+title('\beta = 0.8');
+
 %% Plot h
 figure;hold on;grid on;box on;
 plot(RCBFLOGS1.Time,RCBFLOGS1.h,'b','LineWidth',2);

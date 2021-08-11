@@ -22,7 +22,6 @@ xCBF = CBFLOGS.x;
 
 %% Save Data
 save(mfilename);
-return;
 
 %% Plot trajectories in state-space
 figure;hold on;grid on;box on;
